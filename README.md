@@ -7,22 +7,22 @@ Add Face Recognition Support
 ## 关于人脸识别模块
 
 ### 配置环境:
-    Python 3.7
+    Python 3.7  
     安装face_recognition库，如pip install face_recognition。
 
 ### 使 用 方 法:
-在调用前，将需要识别的人的图像放在../dataset/groundtruth下，将需要被识别的包括未知人的帧(也就是摄像头传来等待鉴权的图像)放在../dataset/unknown/下。其中:
-    groundtruth下的图像遵照 张三.jpg, 李四.jpg，......,王五.jpg。存放。
-    unknown下的图像无命名要求，但不要包括奇怪的特殊字符。同样使用jpg格式。
+在调用前，将需要识别的人的图像放在../dataset/groundtruth下，将需要被识别的包括未知人的帧(也就是摄像头传来等待鉴权的图像)放在../dataset/unknown/下。其中:  
+    groundtruth下的图像遵照 张三.jpg, 李四.jpg，......,王五.jpg。存放。  
+    unknown下的图像无命名要求，但不要包括奇怪的特殊字符。同样使用jpg格式。  
 
-使用时，调用recognition()，无需参数。支持多人同框，返回识别的名字列表。将返回一个布尔值代表是否成功，和一个人名列表。以下字段:
-    Bool, List[]
-    比如:
-        True, [“张三”,“李四”,...,"王五"，"unknown"]
-        True, [“张三”]
-        True, ["unknown"]
-        False, []
-    如果识别识别，会返回空列表。如果识别的人是未注册的，那么那个人的名字就是unknown。换言之，如果发现返回的人名列表中有unknown，就认为是非法的。
+使用时，调用recognition()，无需参数。支持多人同框，返回识别的名字列表。将返回一个布尔值代表是否成功，和一个人名列表。以下字段:  
+    Bool, List[]  
+    比如:  
+        True, [“张三”,“李四”,...,"王五"，"unknown"]  
+        True, [“张三”]  
+        True, ["unknown"]  
+        False, []  
+    如果识别识别，会返回空列表。如果识别的人是未注册的，那么那个人的名字就是unknown。换言之，如果发现返回的人名列表中有unknown，就认为是非法的。  
 
 ### 更多细节:
     每次调用recognition()时会自动调用train()，算法读取groundtruth里的图像生成已知人脸特征集，然后读取unknown里的图像生成未知人脸特征集。然后做匹配。输出最相似人脸的名。
